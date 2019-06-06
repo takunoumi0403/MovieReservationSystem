@@ -4,5 +4,6 @@ public class Main {
 		System.out.println("テスト");
 
 		System.out.println("test2");
+
 	}
 }
