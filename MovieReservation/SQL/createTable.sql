@@ -22,8 +22,7 @@ create table user(
 	FOREIGN KEY `user`(gender_code) REFERENCES `gender`(gender_code)
 );
 
-INSERT	INTO	`user`(`user_code`,`user_mail`,`user_name`,`user_phone`,`gender_code`,`user_birth`,`user_pass`)
-		VALUES	('U001','1701163@st.asojuku.ac.jp','吉野拓海','090-9405-0043','M001','1998/04/03','aiueo');
+INSERT INTO `user`(`user_code`,`user_mail`,`user_name`,`user_phone`,`gender_code`,`user_birth`,`user_pass`) VALUES('U001','1701163@st.asojuku.ac.jp','吉野拓海','090-9405-0043','M001','1998/04/03','aiueo'); /**/
 
 create table fee(
 	`fee_code` VARCHAR(4) NOT NULL,
@@ -32,7 +31,7 @@ create table fee(
 	PRIMARY KEY(`fee_code`)
 );
 
-INSERT INTO `fee`(`fee_code`,`fee_type`,`fee`) VALUES ('FEE1','通常料金',3500);
+INSERT INTO `fee`(`fee_code`,`fee_type`,`fee`) VALUES('FEE1','通常料金',3500);
 
 create table movie(
 	`movie_code` VARCHAR(16) NOT NULL,
@@ -46,8 +45,7 @@ create table movie(
 	PRIMARY KEY(`movie_code`)
 );
 
-INSERT INTO	`movie`(`movie_code`,`movie_name`,`movie_time`,`movie_start`,`movie_finish`,`movie_adress`,`movie_thumbnail`,`movie_description`)
-	VALUES	('MOVIE01','名探偵ピカチュー',90,'2019/06/01','2019/08/01','https://meitantei-pikachu.jp/','../thumbnail/pikachu','全世界待望のハリウッド感動（電）超大作');
+INSERT INTO `movie`(`movie_code`,`movie_name`,`movie_time`,`movie_start`,`movie_finish`,`movie_adress`,`movie_thumbnail`,`movie_description`) VALUES('MOVIE01','名探偵ピカチュー',90,'2019/06/01','2019/08/01','https://meitantei-pikachu.jp/','../thumbnail/pikachu','全世界待望のハリウッド感動（電）超大作');
 
 create table shows(
 	`show_code` VARCHAR(32) NOT NULL,
@@ -58,8 +56,7 @@ create table shows(
 	FOREIGN KEY `shows`(`movie_code`) REFERENCES `movie`(`movie_code`)
 );
 
-INSERT INTO	`shows`(`show_code`,`movie_code`,`show_date`,`theater_code`)
-	VALUES	('S001','MOVIE01','2019/06/01 00:00:00','THEATER01');
+INSERT INTO `shows`(`show_code`,`movie_code`,`show_date`,`theater_code`) VALUES('S001','MOVIE01','2019/06/01 00:00:00','THEATER01');
 
 create table reservation(
 	`reservation_code` VARCHAR(32) NOT NULL,
@@ -70,8 +67,7 @@ create table reservation(
 	FOREIGN KEY (`show_code`) REFERENCES `shows`(`show_code`)
 );
 
-INSERT INTO `reservation`(`reservation_code`,`user_code`,`show_code`)
-	VALUES	('RESERVATION01','U001','S001');
+INSERT INTO `reservation`(`reservation_code`,`user_code`,`show_code`) VALUES('RESERVATION01','U001','S001');/**/
 
 create table reservation_details(
 	`reservation_code` VARCHAR(32) NOT NULL,
@@ -80,7 +76,7 @@ create table reservation_details(
 	PRIMARY KEY(`reservation_code`),
 	FOREIGN KEY (`reservation_code`) REFERENCES `reservation`(`reservation_code`),
 	FOREIGN KEY (`fee_code`) REFERENCES `fee`(`fee_code`)
-);
+);/**/
 
 INSERT INTO `reservation_details`(`reservation_code`,`seat_code`,`fee_code`) VALUES('RESERVATION01','A10','FEE1');
 
