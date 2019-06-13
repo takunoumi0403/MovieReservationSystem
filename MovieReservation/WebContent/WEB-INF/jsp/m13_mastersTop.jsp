@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>管理者のトップページ</title>
 </head>
 <body>
-
+  <div>
+    <li>操作を選んでください</li>
+    <li><button name="login" type="submit" value="">利用者予約確認</button></li>
+    <li><button name="add" type="submit" value="">映画登録</button></li>
+    <li><button name="registration" type="submit" value="">映画一覧更新削除</button></li>
+  </div>
 </body>
 </html>
