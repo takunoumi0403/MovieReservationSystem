@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class M03_MovieRegistrationServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/movie_registration.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/m03_movieRegistration.jsp");
 		dispatcher.forward(request, response);
 	}
 
