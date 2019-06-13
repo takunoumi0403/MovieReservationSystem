@@ -8,7 +8,6 @@
 </head>
 <body>
 
-ログイン画面でーす
 
 </body>
 </html>
