@@ -88,4 +88,3 @@ select * from movie;
 select * from shows;
 select * from reservation;
 select * from reservation_details;
-
