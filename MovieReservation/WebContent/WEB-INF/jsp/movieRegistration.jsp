@@ -95,7 +95,7 @@
 <option>28</option>
 <option>29</option>
 <option>30</option>
-<option>31</option>
+<option>3</option>
 </select>
 
 </td>
