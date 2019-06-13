@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/m10_movieDelete")
-public class M10_MovieDeleteServlet extends HttpServlet {
+@WebServlet("/m13_mastersTop")
+public class M13_MastersTopServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
