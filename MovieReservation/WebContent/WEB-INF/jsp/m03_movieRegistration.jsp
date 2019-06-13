@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>映画登録</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <form action="regist_check" enctype="multipart/form-data" method="POST">
@@ -18,6 +19,7 @@
 <tr>
 <th>説明文 上映時間</th>
 <td><input type="text" name="movie_description">
+時間
 <select name="movie_time_hour">
 <option>0</option>
 <option>1</option>
@@ -25,6 +27,7 @@
 <option>3</option>
 <option>4</option>
 </select>
+分
 <select name="movie_time_minute">
 <option>0</option>
 <option>10</option>
@@ -48,7 +51,7 @@
 <option>2025</option>
 <option>2026</option>
 </select>
-
+年
 <select name="movie_time_startmonth">
 <option>0</option>
 <option>1</option>
@@ -64,7 +67,7 @@
 <option>11</option>
 <option>12</option>
 </select>
-
+月
 <select name="movie_time_startday">
 <option>0</option>
 <option>1</option>
@@ -99,7 +102,7 @@
 <option>30</option>
 <option>31</option>
 </select>
-
+日～
 <select name="movie_time_endyear">
 <option>2019</option>
 <option>2020</option>
@@ -110,7 +113,7 @@
 <option>2025</option>
 <option>2026</option>
 </select>
-
+年
 <select name="movie_time_endmonth">
 <option>0</option>
 <option>1</option>
@@ -126,7 +129,7 @@
 <option>11</option>
 <option>12</option>
 </select>
-
+月
 <select name="movie_time_endday">
 <option>0</option>
 <option>1</option>
@@ -161,13 +164,13 @@
 <option>30</option>
 <option>31</option>
 </select>
-
+日
 </td>
 </tr>
 <tr>
 <th>シアター番号一覧</th>
 <td>
-<select name="theater_number">
+第<select name="theater_number">
 <option>0</option>
 <option>1</option>
 <option>2</option>
@@ -190,6 +193,7 @@
 <option>19</option>
 <option>20</option>
 </select>
+シアター
 </td>
 </tr>
 <tr>
@@ -221,7 +225,7 @@
 <option>22</option>
 <option>23</option>
 </select>
-
+時
 <select name="movie_time_minute">
 <option>0</option>
 <option>5</option>
@@ -236,6 +240,7 @@
 <option>50</option>
 <option>55</option>
 </select>
+分
 </td>
 </tr>
 <tr>
@@ -248,17 +253,15 @@
 <td>
 <div class="imgInput">
 <input type="file" name="file1">
-</div><!--/.imgInput-->
+</div>
 </td>
 </tr>
-
-
-
 </table>
 <input type="submit" value="送信"></form>
 
-<!-- サムネイル画像表示スクリプト -->
+<!-- jQuery読み込み -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- サムネイル画像表示スクリプト -->
 <script>
 $(function(){
     var setFileInput = $('.imgInput');
