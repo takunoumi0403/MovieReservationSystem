@@ -14,7 +14,7 @@ public class M10_MovieDeleteServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/m10_movieDelete.jsp");
 		dispatcher.forward(request, response);
 	}
 
