@@ -3,13 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.UserMovieListBeans;
+import dao.UserMovieListDao;
+
 public class UserMovieListModel {
 
-	public List<MovieListBeans> getMovieList() throws Exception{
+	public List<UserMovieListBeans> getMovieList() throws Exception{
 
-		List<MovieListBeans> list = new ArrayList<MovieListBeans>();
-
-		MovieListDao dao = new MovieListDao();
+		List<UserMovieListBeans> list = new ArrayList<UserMovieListBeans>();
+		UserMovieListDao dao = new UserMovieListDao();
 
 		try{
 			///////////////////////////////////
