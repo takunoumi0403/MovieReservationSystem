@@ -170,7 +170,8 @@
 <tr>
 <th>シアター番号一覧</th>
 <td>
-第<select name="theater_number" onload="start()">
+<div class="form-block" id="form_block[0]">
+第<select name="theater_number[0]" id="theater_number[0]" >
 <option>0</option>
 <option>1</option>
 <option>2</option>
@@ -195,17 +196,18 @@
 </select>
 シアター
 
-<button type="button" onclick="theaterAdd();">追加</button>
+<button type="button" class="add">追加</button>
 <div id="theaterNum"></div>
-<button type="button"  onclick="getRadioValue('grp1');">更新</button>
+</div>
 </td>
 </tr>
 <tr>
 <th>上映開始時間帯</th>
 <td>
-第<span class="theaterNumber"></span>シアター
+<div class="form-block2" id="form_block2[0]">
+第<span class="theater_Number"></span>シアター
 <br>
-<select name="theater_start_hour">
+<select name="theater_start_hour[0]">
 <option>0</option>
 <option>1</option>
 <option>2</option>
@@ -232,7 +234,7 @@
 <option>23</option>
 </select>
 時
-<select name="movie_time_minute">
+<select name="movie_time_minute[0]">
 <option>0</option>
 <option>5</option>
 <option>10</option>
@@ -249,6 +251,8 @@
 分
 <button type="button" onclick="movieStartAdd();">追加</button>
 <div id="movieStart"></div>
+<div id="theaterStart"></div>
+</div>
 </td>
 </tr>
 <tr>
@@ -311,15 +315,42 @@ $(function(){
             }
         });
     });
+    var frm_cnt=0;
+	$(document).on('click', 'button.add', function() {
+		var original = $('#form_block\\['+frm_cnt+'\\]');
+	    var originCnt = frm_cnt;
+	    var originVal = $("select[name='theater_number\\[" + frm_cnt + "\\]']").val();
+
+	    frm_cnt++;
+
+	    original
+        .clone()
+        .hide()
+        .insertAfter(original)
+        .attr('id', 'form_block[' + frm_cnt + ']') // クローンのid属性を変更。
+        .find('select').each(function(idx, obj) {
+            $(obj).attr({
+                id: $(obj).attr('id').replace(/\[[0-9]\]+$/, '[' + frm_cnt + ']'),
+                name: $(obj).attr('name').replace(/\[[0-9]\]+$/, '[' + frm_cnt + ']')
+            });
+            $(obj).val('');
+        });
+	});
 });
 //シアター番号追加
-function theaterAdd()
-{
+/*function theaterAdd(){
+    
     var div_element = document.createElement("div");
     div_element.innerHTML = '第<select name="theater_number"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option></select> シアター <button type="button" onclick="theaterAdd();">追加</button>';
     var theater_object = document.getElementById("theaterNum");
     theater_object.appendChild(div_element);
-}
+    
+    var div_element2 = document.createElement("div");
+    div_element2.innerHTML = '第<span class="theaterNumber"></span>シアター<br><select name="theater_start_hour"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option></select> 時 <select name="movie_time_minute"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select> 分 <button type="button" onclick="movieStartAdd();">追加</button><div id="movieStart"></div><div id="theaterStart"></div>'
+    var theater_start_object = document.getElementById("theaterStart");
+    theater_start_object.appendChild(div_element2);
+}*/
+
 //シアター番号追加時映画上映時間シアター番号に即反映
 window.onload = function () {
     getValue();
@@ -353,9 +384,16 @@ function getValue() {
 //映画上映開始追加
 function movieStartAdd(){
     var div_element = document.createElement("div");
-    div_element.innerHTML = '<select name="theater_start_hour"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option></select> 時 <select name="movie_time_minute"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select> 分 <button type="button" onclick="movieStartAdd();"> 追加</button>';
+    div_element.innerHTML = '<div id="Theater_Start"><select id="theater_start_hour" name="theater_start_hour"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option></select> 時 <select id="theater_start_minute" name="movie_time_minute"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select> 分 <button type="button" onclick="movieStartDelete();">削除</button></div>';
     var movieStart_object = document.getElementById("movieStart");
     movieStart_object.appendChild(div_element);
+}
+//映画上映開始削除
+function movieStartDelete(){
+	var div_element=document.getcreateElement("div");
+	var movieDelete_object=document.getElementById("Theater_Start")
+	div_delete_element.removeChild(movieDelete_object);
+	
 }
 </script>
 
