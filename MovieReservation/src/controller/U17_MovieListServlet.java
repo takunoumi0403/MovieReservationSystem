@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.UserInfoBeans;
 import model.UserMovieListModel;
 
 
@@ -23,13 +23,13 @@ public class U17_MovieListServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		LoginInfoBeans loginInfoBeans = new LoginInfoBeans();
-		loginInfoBeans = (LoginInfoBeans)session.getAttribute("loginInfo");
+		UserInfoBeans userInfoBeans = new UserInfoBeans();
+//		userInfoBeans = (LoginInfoBeans)session.getAttribute("userInfoBeans");
 
 		UserMovieListModel userMovieModel = new UserMovieListModel();
-		List<UserMovieListBeans> list;
+//		List<UserMovieListBeans> list;
 
-		list = userMovieModel.getMovieList();//aaa
+//		list = userMovieModel.getMovieList();
 
 
 
