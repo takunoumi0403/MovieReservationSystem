@@ -28,9 +28,6 @@ public class UserMovieListModel {
 			e.printStackTrace();
 			throw e;
 		}
-		finally {
-			dao.close();
-		}
 
 		return list;
 	}
