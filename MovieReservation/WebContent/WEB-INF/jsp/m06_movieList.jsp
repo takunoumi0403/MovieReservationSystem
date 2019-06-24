@@ -37,7 +37,7 @@
   <?php $count1 = count?><%= %><?; print('/'.$count1.'<br>'); ?>
   
   <ul class="pageNav">
-    <li><a href="m06_movieList">&laquo; 前</a></li>
+    <li><a onclick="history.back()">&laquo; 前</a></li>
     <li><a href="m06_movieList">1</a></li>
     <li><span>2</span></li>
     <li><a href="m06_movieList">3</a></li>
