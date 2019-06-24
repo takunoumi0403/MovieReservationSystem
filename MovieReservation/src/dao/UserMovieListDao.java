@@ -20,9 +20,14 @@ public class UserMovieListDao extends DaoBase{
 
 			///////////////////////////////////
 			//SELECT文の発行
-			stmt = con.prepareStatement("");
+			stmt = con.prepareStatement("SELECT movie_code, movie_name, movie_time, movie_address,"
+					+ "movie_thumbnail, movie_description, show_code,theater_code, seat_space"
+					+ "FROM show"
+					+ "INNER JOIN movie ON show.movie_code = movie.movie_code"
+					+ "INNER JOIN theater ON show.theater_code = theater.theater_code"
+					+ "WHERE show.show_date = ?;");
 
-//			stmt.setDate(1, date);
+			stmt.setString(1, date);
 			rs = stmt.executeQuery();
 
 			/////////////////////////////////////
