@@ -1,56 +1,36 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-/**
- * Daoクラスの基本クラス
- *
- */
-public abstract class DaoBase {
-
+public class DaoBase {
 	protected Connection con = null;
 
 	public void connect() throws Exception{
-
 		if(con != null) {
+			//すでに接続済みの場合は何もしない
 			return;
 		}
 
-		InitialContext context = null;
+		//コネクションプールから値を受け取るためのインスタンス
+		InitialContext context = new InitialContext();;
 
 		try {
+			//データベースの種類を指定する
 			String resourceName = "jdbc/MySQL";
-			String jndi = "java:comp/env/"+resourceName;
 
-			context = new InitialContext();
+			//jndi(Java Naming and Directory Interface)を指定
+			String jndi = "java:comp/env/" + resourceName;
 
+			//データを格納するためのインスタンスを生成する
 			DataSource dataSource = (DataSource)context.lookup(jndi);
 
+			//接続する
 			con = dataSource.getConnection();
-
-		}catch(NamingException e) {
-			e.printStackTrace();
+		}catch(Exception e) {
 			throw e;
-		}catch(SQLException e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
-	public void close() {
-
-		if(con != null) {
-			try {
-				con.close();
-				con = null;
-			}catch(SQLException e) {
-				System.out.println("closeに失敗しました");
-			}
 		}
 	}
 
