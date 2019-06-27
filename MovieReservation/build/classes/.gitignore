@@ -1,10 +1,5 @@
 /.DS_Store
 /beans/
-<<<<<<< HEAD
-/model/
-/controller/
-=======
 /controller/
 /dao/
 /model/
->>>>>>> branch 'kunihiro' of https://github.com/takunoumi0403/MovieReservationSystem.git
