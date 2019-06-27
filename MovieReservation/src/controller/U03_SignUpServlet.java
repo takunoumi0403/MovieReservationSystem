@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/signUp")
 public class U03_SignUpServlet extends HttpServlet {
+	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/top.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 }
