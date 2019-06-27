@@ -14,39 +14,38 @@
 package model;
 
 import beans.UserInfoBeans;
-import dao.Dao;
+import dao.UserDao;
 
 public class UserModel {
 
+	/**
+	 * ログイン処理を行う
+	 * 引数でもらったmailとパスワード
+	 *
+	 * @param id
+	 * @param password
+	 * @return
+	 */
+	public UserInfoBeans login(String mail, String password) {
+		//ユーザの情報を格納するためのインスタンスを生成する
+		UserInfoBeans userInfoBeans = new UserInfoBeans();
 
+		//ユーザーテーブルに対する処理を行うためのインスタンスを生成する
+		UserDao userDao = new UserDao();
 
+		try {
+			//データベース接続
+			userDao.connect();
 
-	public class LoginModel {
-
-		/**
-		 * ログイン処理を行う
-		 * 引数でもらったmailとパスワード
-		 *
-		 * @param id
-		 * @param password
-		 * @return
-		 */
-		public UserInfoBeans login(String id,String password) {
-		 UserInfoBeans loginInfo = null;
-
-			Dao userDao = new Dao();
-			try {
-				userDao.connect();
-				loginInfo = userDao.getBy(id, password);
-			} catch(Exception e) {
-				e.printStackTrace();
-			} finally {
-				if(userDao!=null) {
-					userDao.close();
-				}
-			}
-			return loginInfo;
+			//ログイン情報を取得する
+			userInfoBeans = userDao.getBy(mail,password);
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
+
+		return userInfoBeans;
+
 	}
 
 }
+
