@@ -18,10 +18,10 @@
 		}
 	%>
 	<div id="main">
-		<form action="auth" method="post">
+		<form action="top" method="post">
 			<table class="" tabletable-bordered">
 				<tr>
-					<td><input type="text" name="id"></td>
+					<td><input type="text" name="mail"></td>
 				</tr>
 				<tr>
 					<td><input type="password" name="password"></td>

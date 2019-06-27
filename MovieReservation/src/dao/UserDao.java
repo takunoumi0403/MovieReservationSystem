@@ -8,6 +8,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import beans.UserInfoBeans;
 
@@ -19,15 +20,18 @@ public class UserDao extends DaoBase {
 	//Select分実行後のデータを取得するインタフェースを生成
 	ResultSet rs = null;
 
+	//データ型<->文字列を行うための準備
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+
 	/**
 	 *
 	 * ログイン処理を行うためのメソッド
 	 * @return
 	 */
-	public UserInfoBeans login(String studentNumber,String password) {
+	public UserInfoBeans getBy(String mail,String password) {
 
 		//ログイン情報を格納するためのインスタンスを生成する
-		UserInfoBeans loginInfo = null;
+		UserInfoBeans userInfoBeans = null;
 
 		//接続されているかどうか判定する
 		if(con == null) {
@@ -37,25 +41,27 @@ public class UserDao extends DaoBase {
 
 		try {
 			//select文の発行
-			stmt = con.prepareStatement(
-					"select student.student_id , class.class_code , course_name , class_name , grade , student_name "
-					+ "from student inner join class on student.class_code = class.class_code "
-					+ "inner join course on course.course_code = class.course_code "
-					+ "where student_id = ? and student_password = ?"
-					);
+			stmt = con.prepareStatement("select * from user where user_mail = ? and user_pass = ?");
 
 			//値をセットする
-			stmt.setString(1, studentNumber);
+			stmt.setString(1, mail);
 			stmt.setString(2, password);
 
 			rs = stmt.executeQuery();
 
 			while(rs.next()) {
 				//ログイン情報を格納する
-				loginInfo = new UserInfoBeans();
+				userInfoBeans = new UserInfoBeans();
+				userInfoBeans.setUserCode(rs.getString("user_code"));
+				userInfoBeans.setUserMail(rs.getString("user_mail"));
+				userInfoBeans.setUserName(rs.getString("user_name"));
+				userInfoBeans.setUserPhone(rs.getString("user_phone"));
+				userInfoBeans.setGenderCode(rs.getString("gender_code"));
+				userInfoBeans.setUserBirth(sdf.parse(rs.getString("gender_code")));
 			}
 
 		}catch(Exception e) {
+
 		}finally {
 			//データベースの接続を切る
 			if(con!=null) {
@@ -67,6 +73,6 @@ public class UserDao extends DaoBase {
 			}
 		}
 
-		return loginInfo;
+		return userInfoBeans;
 	}
 }
