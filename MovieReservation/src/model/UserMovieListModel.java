@@ -1,32 +1,29 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import beans.UserMovieListBeans;
-import dao.UserMovieListDao;
 
 public class UserMovieListModel {
 
-	public List<UserMovieListBeans> getMovieList() throws Exception{
+	public List<MovieListBeans> getList(DATE date) throws Exception{
 
-		List<UserMovieListBeans> list = new ArrayList<UserMovieListBeans>();
-		UserMovieListDao dao = new UserMovieListDao();
+		List<MovieListBeans> list = new ArrayList<MovieListBeans>();
 
-		Date date = new Date();
+		MovieListDao dao = new MovieListDao();
 
 		try{
 			///////////////////////////////////
 			//DBの接続
 			dao.connect();
 
-			list = dao.getMovieList(date.toString());
+			list = dao.getMovieList(date);
 
 		}catch(Exception e) {
 			//エラー発生した場合にコンソールにログを出力する
 			e.printStackTrace();
 			throw e;
+		}
+		finally {
+			dao.close();
 		}
 
 		return list;
